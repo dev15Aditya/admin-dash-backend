@@ -10,11 +10,14 @@ dotenv.config();
 const app = express();
 
 // Allow requests only from 'http://localhost:3000' in production
-const corsOptions = {
-  origin: 'http://localhost:3000' || 'https://cms-vert.vercel.app/',
-};
+const corsOptions = ['http://localhost:3000', 'https://cms-vert.vercel.app/'];
 
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: corsOptions,
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 
