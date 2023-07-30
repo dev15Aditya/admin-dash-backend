@@ -9,7 +9,13 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+// Allow requests only from 'http://localhost:3000' in production
+const corsOptions = {
+  origin: 'http://localhost:3000',
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 
 const uri = process.env.MONGO_URI;
